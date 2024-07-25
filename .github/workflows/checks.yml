@@ -1,22 +1,21 @@
 ---
-name: Checks  # Workflow name
+name: Checks 
 
-on: [push] # trigger
+on: [push]
 
-jobs: # jobs
-  test-lint: # test-lint
-    name: Test and Lint # name: Test and Lint
-    runs-on: ubuntu-20.04 # runs-on: ubuntu-20.04
-    steps: # Login to Docker Hub
-      - name: Login to Docker Hub # The name of the step, "Login to Docker Hub".
-        uses: docker/login-action@v1 # Specifies a pre-built action from the GitHub Actions marketplace, docker/login-action@v1, which logs into Docker Hub.
-        with: # Provides inputs for the action
-          username: ${{ secrets.DOCKERHUB_USER }} # The Docker Hub username, fetched from GitHub secrets.
-          password: ${{ secrets.DOCKERHUB_TOKEN }} # The Docker Hub password (or token), fetched from GitHub secrets.
-      - name: Checkout # The name of the step, "Checkout".
-        uses: actions/checkout@v2 # Specifies the action actions/checkout@v2 to check out the repository code. This action retrieves the source code so that subsequent steps can access it.
+jobs:
+  test-lint: 
+    name: Test and Lint 
+    runs-on: ubuntu-20.04 
+    steps: 
+      - name: Login to Docker Hub 
+        uses: docker/login-action@v1 
+        with: 
+          username: ${{ secrets.DOCKERHUB_USER }} 
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2 
       - name: Test
-        run: docker-compose run --rm app sh -c "python manage.py test" # This command uses docker-compose to run a service named app defined in a docker-compose.yml file.
-        # The command runs the test suite (python manage.py test).
+        run: docker-compose run --rm app sh -c "python manage.py test" 
       - name: Lint
-        run: docker-compose run --rm app sh -c "flake8" # This command uses docker-compose to run a service named app and execute flake8, a tool for checking the style guide enforcement (linting) of Python code
+        run: docker-compose run --rm app sh -c "flake8" 
