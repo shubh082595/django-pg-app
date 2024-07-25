@@ -19,4 +19,4 @@ jobs: # jobs
         run: docker-compose run --rm app sh -c "python manage.py test" # This command uses docker-compose to run a service named app defined in a docker-compose.yml file.
         # The command runs the test suite (python manage.py test).
       - name: Lint
-        run: docker-compose run --rm app sh -c "flake8" # This command uses docker-compose to run a service named app and execute flake8, a tool for checking the style guide enforcement (linting) of Python code.
+        run: docker-compose run --rm app sh -c "flake8" # This command uses docker-compose to run a service named app and execute flake8, a tool for checking the style guide enforcement (linting) of Python code
